@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
       createdAt: 'desc'
     }).limit(10).exec()
   } catch(e) {
+    if (e) console.log(e);
     books = []
   }
   res.render('index', {

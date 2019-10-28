@@ -15,6 +15,7 @@ router.get('/', async (req, res) => {
             searchOptions: req.query
         })
     } catch(e) {
+        if (e) console.log(e);
         res.redirect('/')
     }
 })
@@ -35,6 +36,7 @@ router.post('/', async (req, res) => {
         const newAuthor = await author.save()
         res.redirect(`authors/${newAuthor.id}`)
     } catch(e) {
+        if (e) console.log(e);
         res.render('authors/new', {
             author: author,
             errorMessage: 'Error creating Author'
@@ -53,6 +55,7 @@ router.get('/:id', async (req, res) => {
             booksByAuthor: books
         })
     } catch(e) {
+        if (e) console.log(e);
         res.redirect('/')
     }
 })
@@ -64,6 +67,7 @@ router.get('/:id/edit', async (req, res) => {
             author: author
         })
     } catch(e) {
+        if (e) console.log(e);
         res.redirect('/authors')
     }
 })
@@ -76,6 +80,7 @@ router.put('/:id', async (req, res) => {
         await author.save()
         res.redirect(`/authors/${author.id}`)
     } catch(e) {
+        if (e) console.log(e);
         if (author == null) {
             res.redirect('/')
         } else {
@@ -94,6 +99,7 @@ router.delete('/:id', async (req, res) => {
         await author.remove()
         res.redirect('/authors')
     } catch(e) {
+        if (e) console.log(e);
         if (author == null) {
             res.redirect('/')
         } else {
